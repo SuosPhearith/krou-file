@@ -3,6 +3,7 @@ const multer = require("multer");
 const fs = require("fs-extra");
 const cors = require("cors");
 const path = require("path");
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
@@ -12,7 +13,7 @@ const uploadDir = path.join(__dirname, "uploads");
 fs.ensureDirSync(uploadDir);
 
 // ✅ Predefined list of valid keys
-const VALID_KEYS = ["your_secure_key_1", "your_secure_key_2"];
+const VALID_KEYS = [process.env.KEY_ACCESS];
 
 // Serve static files from the "uploads" directory
 app.use("/uploads", express.static(uploadDir));
